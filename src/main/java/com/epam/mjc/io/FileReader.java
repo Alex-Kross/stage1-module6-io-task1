@@ -2,22 +2,21 @@ package com.epam.mjc.io;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
 public class FileReader {
-    private final static String NAME_STRING = "name:{1}[\\s]|Name:{1}[\\s]|name{1}[\\s]|Name{1}[\\s]";
-    private final static String AGE_STRING = "age:{1}[\\s]|Age:{1}[\\s]|age{1}[\\s]|Age{1}[\\s]";
-    private final static String EMAIL_STRING = "email:{1}[\\s]|Email:{1}[\\s]|email{1}[\\s]|Email{1}[\\s]";
-    private final static String PHONE_STRING = "phone:{1}[\\s]|Phone:{1}[\\s]|phone{1}[\\s]|Phone{1}[\\s]";
+    private static final String NAME_STRING = "name:{1}[\\s]|Name:{1}[\\s]|name{1}[\\s]|Name{1}[\\s]";
+    private static final  String AGE_STRING = "age:{1}[\\s]|Age:{1}[\\s]|age{1}[\\s]|Age{1}[\\s]";
+    private static final  String EMAIL_STRING = "email:{1}[\\s]|Email:{1}[\\s]|email{1}[\\s]|Email{1}[\\s]";
+    private static final  String PHONE_STRING = "phone:{1}[\\s]|Phone:{1}[\\s]|phone{1}[\\s]|Phone{1}[\\s]";
 
-    private final static Pattern NAME_STRING_PATTERN = Pattern.compile(NAME_STRING);
-    private final static Pattern AGE_STRING_PATTERN = Pattern.compile(AGE_STRING);
-    private final static Pattern EMAIL_STRING_PATTERN = Pattern.compile(EMAIL_STRING);
-    private final static Pattern PHONE_STRING_PATTERN = Pattern.compile(PHONE_STRING);
+    private static final  Pattern NAME_STRING_PATTERN = Pattern.compile(NAME_STRING);
+    private static final  Pattern AGE_STRING_PATTERN = Pattern.compile(AGE_STRING);
+    private static final  Pattern EMAIL_STRING_PATTERN = Pattern.compile(EMAIL_STRING);
+    private static final  Pattern PHONE_STRING_PATTERN = Pattern.compile(PHONE_STRING);
 
 
     public Profile getDataFromFile(File file) {
