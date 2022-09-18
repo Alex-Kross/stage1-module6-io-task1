@@ -9,15 +9,16 @@ import java.util.regex.Pattern;
 
 
 public class FileReader {
-    private final String NAME_TEMPLATE = "name:{1}[\\s]|Name:{1}[\\s]|name{1}[\\s]|Name{1}[\\s]";
-    private final String AGE_TEMPLATE = "age:{1}[\\s]|Age:{1}[\\s]|age{1}[\\s]|Age{1}[\\s]";
-    private final String EMAIL_TEMPLATE = "email:{1}[\\s]|Email:{1}[\\s]|email{1}[\\s]|Email{1}[\\s]";
-    private final String PHONE_TEMPLATE = "phone:{1}[\\s]|Phone:{1}[\\s]|phone{1}[\\s]|Phone{1}[\\s]";
+    private final static String NAME_STRING = "name:{1}[\\s]|Name:{1}[\\s]|name{1}[\\s]|Name{1}[\\s]";
+    private final static String AGE_STRING = "age:{1}[\\s]|Age:{1}[\\s]|age{1}[\\s]|Age{1}[\\s]";
+    private final static String EMAIL_STRING = "email:{1}[\\s]|Email:{1}[\\s]|email{1}[\\s]|Email{1}[\\s]";
+    private final static String PHONE_STRING = "phone:{1}[\\s]|Phone:{1}[\\s]|phone{1}[\\s]|Phone{1}[\\s]";
 
-    private final Pattern NAME_PATTERN = Pattern.compile(NAME_TEMPLATE);
-    private final Pattern AGE_PATTERN = Pattern.compile(AGE_TEMPLATE);
-    private final Pattern EMAIL_PATTERN = Pattern.compile(EMAIL_TEMPLATE);
-    private final Pattern PHONE_PATTERN = Pattern.compile(PHONE_TEMPLATE);
+    private final static Pattern NAME_STRING_PATTERN = Pattern.compile(NAME_STRING);
+    private final static Pattern AGE_STRING_PATTERN = Pattern.compile(AGE_STRING);
+    private final static Pattern EMAIL_STRING_PATTERN = Pattern.compile(EMAIL_STRING);
+    private final static Pattern PHONE_STRING_PATTERN = Pattern.compile(PHONE_STRING);
+
 
     public Profile getDataFromFile(File file) {
         Profile profile = new Profile();
@@ -28,8 +29,6 @@ public class FileReader {
                 profile = parseString(profile, strData);
             }
 
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -37,19 +36,19 @@ public class FileReader {
     }
 
     private Profile parseString(Profile profile, String data) {
-        Matcher nameMather = NAME_PATTERN.matcher(data);
-        Matcher ageMather = AGE_PATTERN.matcher(data);
-        Matcher emailMather = EMAIL_PATTERN.matcher(data);
-        Matcher phoneMather = PHONE_PATTERN.matcher(data);
+        Matcher nameStringMather = NAME_STRING_PATTERN.matcher(data);
+        Matcher ageStringMather = AGE_STRING_PATTERN.matcher(data);
+        Matcher emailStringMather = EMAIL_STRING_PATTERN.matcher(data);
+        Matcher phoneStringMather = PHONE_STRING_PATTERN.matcher(data);
 
-        if (nameMather.find()) {
-            profile.setName(data.substring(nameMather.end()));
-        } else if (ageMather.find()) {
-            profile.setAge(Integer.parseInt(data.substring(ageMather.end())));
-        } else if (emailMather.find()) {
-            profile.setEmail(data.substring(emailMather.end()));
-        } else if (phoneMather.find()) {
-            profile.setPhone((long) Integer.parseInt(data.substring(phoneMather.end())));
+        if (nameStringMather.find()) {
+            profile.setName(data.substring(nameStringMather.end()));
+        } else if (ageStringMather.find()) {
+            profile.setAge(Integer.parseInt(data.substring(ageStringMather.end())));
+        } else if (emailStringMather.find()) {
+            profile.setEmail(data.substring(emailStringMather.end()));
+        } else if (phoneStringMather.find()) {
+            profile.setPhone((long) Integer.parseInt(data.substring(phoneStringMather.end())));
         }
         return profile;
     }
